@@ -28,3 +28,21 @@ const reverseList = function (head) {
 
     return prev;
 }
+
+/**
+ * Recursive
+ * Time O(N) | Space O(N)
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+const reverseList = function(head) {
+    if (!head || !head.next) {
+        return head;
+    }
+
+    const revList = reverseList(head.next);
+    head.next.next = head;
+    head.next = null;
+
+    return revList
+};
