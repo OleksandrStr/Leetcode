@@ -25,3 +25,37 @@ const countStudents = function (students, sandwiches) {
 
     return students.length;
 }
+
+/**
+ * Solution 2
+ * Time O(N) | Space O(1)
+ * @param {number[]} students
+ * @param {number[]} sandwiches
+ * @return {number}
+ */
+const countStudents = function (students, sandwiches) {
+    let studentsCircles = 0;
+    let studentsSquares = 0;
+
+    for (let i = 0; i < students.length; i++) {
+        if (students[i] === 0) {
+            studentsCircles++;
+        } else {
+            studentsSquares++;
+        }
+    }
+
+    for (let i = 0; i < sandwiches.length; i++) {
+        if (sandwiches[i] === 0) {
+            studentsCircles--;
+        } else {
+            studentsSquares--;
+        }
+
+        if (studentsCircles < 0 || studentsSquares < 0) {
+            return sandwiches.length - i;
+        }
+    }
+
+    return 0;
+};
